@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/ExamInterface.css";
 
 const QUESTIONS = [
@@ -20,10 +21,72 @@ const QUESTIONS = [
 ];
 
 function ExamInterface() {
+  const navigate = useNavigate();
+  const [warnings, setWarnings] = useState(0);
+  const MAX_WARNINGS = 2;
+
+  /* ---------- Fullscreen ---------- */
+  const enterFullscreen = () => {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) elem.requestFullscreen();
+  };
+
+  useEffect(() => {
+    enterFullscreen();
+
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        triggerWarning("You exited fullscreen mode!");
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  /* ---------- Tab Switch Detection ---------- */
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        triggerWarning("Tab switching is not allowed!");
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
+  /* ---- Warning System ---- */
+  const triggerWarning = (message) => {
+    alert(message);
+
+    setWarnings((prev) => {
+      const updated = prev + 1;
+
+      if (updated > MAX_WARNINGS) {
+        autoSubmitExam();
+      }
+
+      return updated;
+    });
+  };
+
+  const autoSubmitExam = () => {
+    alert("You have violated exam rules. Exam auto-submitted.");
+
+    // TODO: Call backend API later to submit answers
+    navigate("/candidate-dashboard");
+  };
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes (seconds)
   const [submitted, setSubmitted] = useState(false);
+
+
 
   // TIMER LOGIC
   useEffect(() => {
@@ -129,10 +192,15 @@ function ExamInterface() {
         </div>
       </main>
 
-      {/* Timer */}
+      {/* Timer + Warning */}
       <div className="timer">
         <p>Time Left</p>
         <h3>{formatTime()}</h3>
+        <br />
+        <br />
+        <span className="warning-count">
+          Warnings: {warnings} / {MAX_WARNINGS}
+        </span>
       </div>
     </div>
   );
