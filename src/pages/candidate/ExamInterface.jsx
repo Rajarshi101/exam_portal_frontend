@@ -1,22 +1,139 @@
+import { useEffect, useState } from "react";
 import "../../styles/ExamInterface.css";
 
+const QUESTIONS = [
+  {
+    id: 1,
+    question: "Which language is used for backend development?",
+    options: ["HTML", "CSS", "Java", "Bootstrap"]
+  },
+  {
+    id: 2,
+    question: "Which database is relational?",
+    options: ["MongoDB", "PostgreSQL", "Redis", "Neo4j"]
+  },
+  {
+    id: 3,
+    question: "React is a ____?",
+    options: ["Database", "Framework", "Library", "Language"]
+  }
+];
+
 function ExamInterface() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes (seconds)
+  const [submitted, setSubmitted] = useState(false);
+
+  // TIMER LOGIC
+  useEffect(() => {
+    if (submitted) return;
+
+    if (timeLeft === 0) {
+      handleSubmit();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, submitted]);
+
+  const handleOptionSelect = (option) => {
+    setAnswers({
+      ...answers,
+      [currentIndex]: option
+    });
+  };
+
+  const handleSubmit = () => {
+    setSubmitted(true);
+    alert("Exam auto-submitted!");
+    console.log("Submitted Answers:", answers);
+  };
+
+  const formatTime = () => {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  if (submitted) {
+    return (
+      <div className="exam-submitted">
+        <h1>Exam Submitted Successfully</h1>
+        <p>Your responses have been recorded.</p>
+      </div>
+    );
+  }
+
+  const currentQuestion = QUESTIONS[currentIndex];
+
   return (
     <div className="exam-interface">
+      {/* Sidebar */}
       <aside className="question-sidebar">
-        <p>Q1</p>
-        <p>Q2</p>
-        <p>Q3</p>
+        {QUESTIONS.map((q, index) => (
+          <div
+            key={q.id}
+            className={`question-number ${
+              index === currentIndex ? "active" : ""
+            }`}
+            onClick={() => setCurrentIndex(index)}
+          >
+            Q{index + 1}
+          </div>
+        ))}
       </aside>
 
+      {/* Main Question Area */}
       <main className="question-area">
-        <h2>Question will appear here</h2>
-        <button>Previous</button>
-        <button>Next</button>
-        <button>Submit</button>
+        <h2>
+          Q{currentIndex + 1}. {currentQuestion.question}
+        </h2>
+
+        <div className="options">
+          {currentQuestion.options.map((option, idx) => (
+            <label key={idx} className="option">
+              <input
+                type="radio"
+                name={`question-${currentIndex}`}
+                checked={answers[currentIndex] === option}
+                onChange={() => handleOptionSelect(option)}
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+
+        <div className="navigation-buttons">
+          <button
+            disabled={currentIndex === 0}
+            onClick={() => setCurrentIndex(currentIndex - 1)}
+          >
+            Previous
+          </button>
+
+          <button
+            disabled={currentIndex === QUESTIONS.length - 1}
+            onClick={() => setCurrentIndex(currentIndex + 1)}
+          >
+            Next
+          </button>
+
+          <button className="submit-btn" onClick={handleSubmit}>
+            Submit Exam
+          </button>
+        </div>
       </main>
 
-      <div className="timer">Time Left: 01:30:00</div>
+      {/* Timer */}
+      <div className="timer">
+        <p>Time Left</p>
+        <h3>{formatTime()}</h3>
+      </div>
     </div>
   );
 }
