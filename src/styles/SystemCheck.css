@@ -1,0 +1,33 @@
+.system-check {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 2rem;
+}
+
+.system-check h1 {
+  margin-bottom: 1.5rem;
+}
+
+.system-check label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.system-check input {
+  margin-right: 10px;
+}
+
+.system-check button {
+  margin-top: 2rem;
+  padding: 12px 20px;
+  background-color: #243b55;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.system-check button:hover {
+  background-color: #141e30;
+}
