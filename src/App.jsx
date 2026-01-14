@@ -1,14 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 // import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
+import CandidateDashboard from "./pages/CandidateDashboard";
 
 function App() {
   return (
-    <div>
-      <h1>Exam Portal</h1>
-      <p>Frontend initialized successfully.</p>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      <Route path="/candidate-dashboard" element={<CandidateDashboard />} />
+    </Routes>
   );
 }
 
