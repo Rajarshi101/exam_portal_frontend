@@ -1,21 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminLayout from "./layouts/AdminLayout";
-import Dashboard from "./pages/Dashboard";
-import Students from "./pages/Students";
-import Questions from "./pages/Questions";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+// import './App.css'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="students" element={<Students />} />
-          <Route path="questions" element={<Questions />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <h1>Exam Portal</h1>
+      <p>Frontend initialized successfully.</p>
+    </div>
   );
 }
 
 export default App;
+
