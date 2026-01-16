@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import "../../styles/ExamOverview.css";
+import "../../styles/CandidateExamOverview.css";
 
-function ExamOverview() {
+function CandidateExamOverview() {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -32,4 +32,4 @@ function ExamOverview() {
   );
 }
 
-export default ExamOverview;
+export default CandidateExamOverview;

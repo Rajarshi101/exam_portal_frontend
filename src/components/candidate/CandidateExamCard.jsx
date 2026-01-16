@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import "../../styles/ExamCard.css";
+import "../../styles/CandidateExamCard.css";
 
-function ExamCard({ exam }) {
+function CandidateExamCard({ exam }) {
   const navigate = useNavigate();
 
   return (
@@ -29,4 +29,4 @@ function ExamCard({ exam }) {
   );
 }
 
-export default ExamCard;
+export default CandidateExamCard;

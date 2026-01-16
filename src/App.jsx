@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import CandidateDashboard from "./pages/candidate/CandidateDashboard";
-import ExamOverview from "./components/candidate/ExamOverview";
+import CandidateExamOverview from "./components/candidate/CandidateExamOverview";
 import SystemCheck from "./pages/candidate/SystemCheck";
-import ExamInterface from "./pages/candidate/ExamInterface";
+import CandidateExamInterface from "./pages/candidate/CandidateExamInterface";
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/admin-dashboard" element={<AdminDashboard />} />
       <Route path="/candidate-dashboard" element={<CandidateDashboard />} />
-      <Route path="/exam/:id" element={<ExamOverview />} />
+      <Route path="/exam/:id" element={<CandidateExamOverview />} />
       <Route path="/system-check/:id" element={<SystemCheck />} />
-      <Route path="/exam-interface/:id" element={<ExamInterface />} />
+      <Route path="/exam-interface/:id" element={<CandidateExamInterface />} />
     </Routes>
   );
 }

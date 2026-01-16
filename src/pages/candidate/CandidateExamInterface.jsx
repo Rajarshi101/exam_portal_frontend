@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/ExamInterface.css";
+import "../../styles/CandidateExamInterface.css";
 
 const QUESTIONS = [
   {
@@ -20,7 +20,7 @@ const QUESTIONS = [
   }
 ];
 
-function ExamInterface() {
+function CandidateExamInterface() {
   const navigate = useNavigate();
   const [warnings, setWarnings] = useState(0);
   const MAX_WARNINGS = 2;
@@ -206,4 +206,4 @@ function ExamInterface() {
   );
 }
 
-export default ExamInterface;
+export default CandidateExamInterface;

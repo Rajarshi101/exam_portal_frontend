@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CandidateSidebar from "../../components/candidate/CandidateSidebar";
-import ExamCard from "../../components/candidate/ExamCard";
+import CandidateExamCard from "../../components/candidate/CandidateExamCard";
 import "../../styles/CandidateDashboard.css";
 
 const dummyUpcoming = [
@@ -39,12 +39,12 @@ function CandidateDashboard() {
         <div className="exam-list">
           {activeTab === "upcoming" &&
             dummyUpcoming.map((exam) => (
-              <ExamCard key={exam.id} exam={exam} />
+              <CandidateExamCard key={exam.id} exam={exam} />
             ))}
 
           {activeTab === "completed" &&
             dummyCompleted.map((exam) => (
-              <ExamCard key={exam.id} exam={exam} />
+              <CandidateExamCard key={exam.id} exam={exam} />
             ))}
         </div>
       </div>
