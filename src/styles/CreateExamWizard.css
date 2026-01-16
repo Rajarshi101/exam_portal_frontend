@@ -47,3 +47,24 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.question-preview {
+  margin-top: 1.5rem;
+}
+
+.question-preview table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.question-preview th,
+.question-preview td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.question-preview th {
+  background-color: #243b55;
+  color: white;
+}
