@@ -1,7 +1,7 @@
 // import './App.css'
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import CandidateDashboard from "./pages/candidate/CandidateDashboard";
 import ExamOverview from "./components/candidate/ExamOverview";
 import SystemCheck from "./pages/candidate/SystemCheck";

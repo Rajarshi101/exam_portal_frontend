@@ -1,0 +1,49 @@
+.wizard-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 700px;
+}
+
+.wizard-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.wizard-steps span {
+  opacity: 0.4;
+}
+
+.wizard-steps .active {
+  opacity: 1;
+  color: #243b55;
+}
+
+.wizard-step label {
+  display: block;
+  margin-bottom: 1.2rem;
+}
+
+.wizard-step input,
+.wizard-step textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.wizard-step textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.next-btn {
+  margin-top: 1.5rem;
+  padding: 10px 18px;
+  background-color: #243b55;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
